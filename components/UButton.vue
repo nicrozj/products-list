@@ -1,7 +1,13 @@
+<script setup>
+const { isFormFilled } = useForm();
+
+const { classes } = defineProps({
+    classes: { type: [String, Array], required: false }
+})
+</script>
 <template>
     <button
-        class="bg-stone-100 rounded-lg text-gray-400 py-2"
-    >
+        :class="classes">
         <slot></slot>
     </button>
 </template>
