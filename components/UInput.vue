@@ -8,14 +8,14 @@ const model = defineModel();
     <div class="flex flex-col gap-2">
         <span class="text-xs text-gray-800 text-left">{{ title }}</span>
         <input
-            v-if="type=='text'"
+            v-if="type=='text' || type=='number'"
             :placeholder="placeholder"
             v-model="model"
             @focus="isActivated = true; isFocus = true"
             @blur="isFocus = false"
             :class="[
-                'font-light shadow-input rounded-md resize-none w-full px-2 py-2 placeholder:text-xs placeholder:text-stone-300 ',
-                !model && isActivated && isFocus ? 'border border-red-400' : ''
+                'font-light shadow-input rounded-md resize-none w-full px-2 py-1 placeholder:text-xs placeholder:text-stone-300 ',
+                required && !model && isActivated && !isFocus ? 'border border-red-400' : ''
             ]">
         <textarea
             v-if="type=='textarea'"
@@ -25,7 +25,7 @@ const model = defineModel();
             @blur="isFocus = false"
             :class="[
                 'font-light shadow-input focus:border-0 rounded-sm resize-none w-full h-32 px-2 py-2 placeholder:text-xs placeholder:text-stone-300',
-                !model && isActivated && isFocus ? 'border border-red-400' : ''
+                required && !model && isActivated && !isFocus ? 'border border-red-400' : ''
             ]">
         </textarea>
         <p v-if="required && !model && isActivated && !isFocus" class="text-red-400 text-xs tracking-tighter">Поле необходимо заполнить</p>
